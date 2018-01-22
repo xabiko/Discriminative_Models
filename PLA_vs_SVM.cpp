@@ -1,9 +1,11 @@
+#include <vector>
 #define DIM 2
 
 struct dataset_binary {
-	float x1;
-	float x2;
-}
+	std::vector<double> x1;
+	std::vector<double> x2;
+	std::vector<bool>   y;
+};
 
 int main (){
 	
