@@ -2,25 +2,47 @@
 #include <vector>
 #include <random>
 
-#define DIM 2
-#define N 10
-#define RUNS 1000
-
 using namespace std;
 
-struct dataset_binary {
+const int DIM = 2;
+const int N = 10;
+const int RUNS = 1000;
+
+default_random_engine generator;
+uniform_real_distribution<float> distribution(-1,1);
+
+struct binSet {
 	vector<float> x1;
 	vector<float> x2;
 	vector<bool>   y;
 };
 
-int main (){
+binSet gen (){
 	
-	default_random_engine generator;
-	uniform_real_distribution<float> distribution(-1,1);
+	binSet random_set;
 
-	for(int i=0; i<=N; i++){
-		cout << distribution(generator) << "\n";	
+	for(int i=0; i<N; i++){
+                random_set.x1.push_back(distribution(generator));
+		random_set.x2.push_back(distribution(generator));
+        }
+	
+	return random_set;
+
+}
+
+int main (){
+
+	binSet test_set = gen();
+	binSet other_set= gen();
+	int i;
+
+	for(i=0; i<N; i++){
+		cout << test_set.x1[i] << " " << test_set.x2[i] << "\n";
+	}
+	cout << "\n";
+	for(i=0; i<N; i++){
+		cout << other_set.x1[i] << " " << other_set.x2[i] << "\n";
 	}
 
+	return 0;
 }
