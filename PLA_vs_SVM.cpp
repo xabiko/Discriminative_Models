@@ -44,7 +44,6 @@ binSet gen (){
 int main (){
 
 	float target_f[DIM];
-	target(target_f);
 
 	binSet test_set = gen();
 	binSet other_set= gen();
@@ -58,7 +57,10 @@ int main (){
 		cout << other_set.x1[i] << " " << other_set.x2[i] << "\n";
 	}
 	cout << "\n";
-	cout << target_f[0]<< " " << target_f[1] << "\n";
-	
+	for(i=0; i<N; i++){
+		target(target_f);
+		cout << target_f[0]<< " " << target_f[1] << "\n";
+	}	
+
 	return 0;
 }
