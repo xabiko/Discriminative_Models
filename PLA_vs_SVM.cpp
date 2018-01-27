@@ -41,7 +41,7 @@ binSet gen (float target_f[]){
 	for(int i=0; i<N; i++){
                 random_set.x1.push_back(distribution(generator));
 		random_set.x2.push_back(distribution(generator));
-		random_set.y.push_back( bin_class(target_f, random_set.x1[i], random_set.x2[i]) );
+		random_set.y.push_back( bin_class(target_f, random_set.x1.back(), random_set.x2.back()) );
         }
 	return random_set;
 }
