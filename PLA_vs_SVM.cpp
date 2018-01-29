@@ -17,22 +17,23 @@ struct binSet {
 	vector<int>   y ;
 };
 
-void create_f (float arr[]){
+void create_f (float w[]){
 	float ps[4];
 
 	for(int i=0; i<4; i++){
 		ps[i] = distribution(generator);
 	}
-	arr[0] = (ps[3]-ps[1])/(ps[2]-ps[0]);
-	arr[1] = ps[1] - (arr[0]*ps[0]);
+	w[1] = (ps[3]-ps[1])/(ps[2]-ps[0]);
+	w[0] = ps[1] - (w[1]*ps[0]);
+	w[2] = -1;
 }
 
-int bin_class(float target_f[], float &x1, float &x2){
-	float y = x1*target_f[0] - x2 + target_f[1];
+int bin_class (float w[], float &x1, float &x2){
+	float y = w[0] + w[1]*x1 + w[2]*x2;
 
-	if(y>0){return 1;}else
+	if(y>0){return 1;}
 	if(y<0){return -1;}
-	else{return 0;}
+	return 0;
 }
 
 binSet gen (float target_f[]){
@@ -46,13 +47,20 @@ binSet gen (float target_f[]){
 	return random_set;
 }
 
+void perceptron (float w[], binSet dat){
+	int actual_output[N];
+	
+}
+
 int main (){
 
-	float hyperplane[DIM];
+	float hyperplane[DIM+1];
 	create_f(hyperplane);
 
 	binSet test_set = gen(hyperplane);
-	binSet other_set= gen(hyperplane);
+	binSet other_set= gen(hype9rplane);
+
+	float p_weights[DIM+1] = {};
 
 	for(int i=0; i<N; i++){
 		cout << test_set.x1[i] << "\t" << test_set.x2[i] << "\t" << test_set.y[i] << "\n";
